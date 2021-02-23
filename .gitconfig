@@ -1,0 +1,7 @@
+[user]
+	name = ShadowBurst
+	email = shadowburst@users.noreply.github.com
+[init]
+	defaultBranch = main
+[pull]
+	rebase = true
