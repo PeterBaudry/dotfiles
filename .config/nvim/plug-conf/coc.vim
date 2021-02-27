@@ -77,10 +77,6 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
-" Formatting selected code.
-xmap <leader>f  <Plug>(coc-format-selected)
-nmap <leader>f  <Plug>(coc-format-selected)
-
 augroup mygroup
   autocmd!
   " Setup formatexpr specified filetype(s).
@@ -88,42 +84,6 @@ augroup mygroup
   " Update signature help on jump placeholder.
   autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 augroup end
-
-" Applying codeAction to the selected region.
-" Example: `<leader>aap` for current paragraph
-xmap <leader>a  <Plug>(coc-codeaction-selected)
-nmap <leader>a  <Plug>(coc-codeaction-selected)
-
-" Remap keys for applying codeAction to the current buffer.
-nmap <leader>ac  <Plug>(coc-codeaction)
-" Apply AutoFix to problem on the current line.
-nmap <leader>qf  <Plug>(coc-fix-current)
-
-" Map function and class text objects
-" NOTE: Requires 'textDocument.documentSymbol' support from the language server.
-xmap if <Plug>(coc-funcobj-i)
-omap if <Plug>(coc-funcobj-i)
-xmap af <Plug>(coc-funcobj-a)
-omap af <Plug>(coc-funcobj-a)
-xmap ic <Plug>(coc-classobj-i)
-omap ic <Plug>(coc-classobj-i)
-xmap ac <Plug>(coc-classobj-a)
-omap ac <Plug>(coc-classobj-a)
-
-" Remap <C-f> and <C-b> for scroll float windows/popups.
-" if has('nvim-0.4.0') || has('patch-8.2.0750')
-"   nnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-"   nnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-"   inoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(1)\<cr>" : "\<Right>"
-"   inoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? "\<c-r>=coc#float#scroll(0)\<cr>" : "\<Left>"
-"   vnoremap <silent><nowait><expr> <C-f> coc#float#has_scroll() ? coc#float#scroll(1) : "\<C-f>"
-"   vnoremap <silent><nowait><expr> <C-b> coc#float#has_scroll() ? coc#float#scroll(0) : "\<C-b>"
-" endif
-
-" Use CTRL-S for selections ranges.
-" Requires 'textDocument/selectionRange' support of language server.
-" nmap <silent> <C-s> <Plug>(coc-range-select)
-" xmap <silent> <C-s> <Plug>(coc-range-select)
 
 " Add `:Format` command to format current buffer.
 command! -nargs=0 Format :call CocAction('format')
@@ -176,29 +136,31 @@ let g:coc_explorer_global_presets = {
 \ }
 
 let g:coc_global_extensions = [
-  \ 'coc-snippets',
-  \ 'coc-actions',
-  \ 'coc-sh',
-  \ 'coc-lists',
-  \ 'coc-emmet',
-  \ 'coc-tasks',
-  \ 'coc-pairs',
-  \ 'coc-tsserver',
-  \ 'coc-floaterm',
-  \ 'coc-fzf-preview',
-  \ 'coc-html',
-  \ 'coc-css',
-  \ 'coc-cssmodules',
-  \ 'coc-stylelintplus',
-  \ 'coc-emoji',
-  \ 'coc-yaml',
-  \ 'coc-explorer',
-  \ 'coc-svg',
-  \ 'coc-prettier',
-  \ 'coc-vimlsp',
-  \ 'coc-xml',
-  \ 'coc-yank',
-  \ 'coc-json',
-  \ ]
+      \ 'coc-actions',
+      \ 'coc-css',
+      \ 'coc-cssmodules',
+      \ 'coc-emmet',
+      \ 'coc-emoji',
+      \ 'coc-explorer',
+      \ 'coc-floaterm',
+      \ 'coc-fzf-preview',
+      \ 'coc-html',
+      \ 'coc-json',
+      \ 'coc-lists',
+      \ 'coc-lua',
+      \ 'coc-pairs',
+      \ 'coc-prettier',
+      \ 'coc-sh',
+      \ 'coc-snippets',
+      \ 'coc-stylelintplus',
+      \ 'coc-svg',
+      \ 'coc-tasks',
+      \ 'coc-tsserver',
+      \ 'coc-vimlsp',
+      \ 'coc-xml',
+      \ 'coc-yaml',
+      \ 'coc-yank',
+\ ]
 
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+autocmd VimEnter * sil! au! FileExplorer *
+autocmd BufEnter * let d = expand('%') | if isdirectory(d) | silent! bd | exe 'CocCommand explorer ' . d | endif

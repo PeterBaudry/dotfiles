@@ -75,7 +75,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,10 +88,13 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='nano'
+  export EDITOR='/usr/bin/nvim'
 else
-  export EDITOR='code'
+  export EDITOR='/usr/bin/nvim'
 fi
+
+# Set neovim as manpager
+export MANPAGER="nvim -c 'set ft=man' -"
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -103,13 +106,23 @@ fi
 
 alias ll="ls -al"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias nv="nvim"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Key bindings
-bindkey '^H' backward-kill-word
-bindkey '^[[3;5~' kill-word
+# bindkey '^H' backward-kill-word
+# bindkey '^[[3;5~' kill-word
 
 # Custom variables
 export OPENCV_LOG_LEVEL=ERROR
+
+# Custom options
+setopt complete_aliases
+
+# Custom plugin configurations
+
+# ZSH-VI-MODE
+
+ZVM_VI_ESCAPE_BINDKEY=kj

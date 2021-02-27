@@ -21,3 +21,7 @@ map <Leader>k <Plug>(easymotion-k)
 map <Leader>h <Plug>(easymotion-linebackward)
 
 let g:EasyMotion_startofline = 0 " keep cursor column when JK motion
+
+" Fix COC diagnotics
+autocmd User EasyMotionPromptBegin CocDisable
+autocmd User EasyMotionPromptEnd CocEnable

@@ -6,9 +6,9 @@
     "graphql",
     "html",
     "yaml",
-    "json"
+    "jsonc",
+    "lua"
   ],
- 
   // Add icons to lsp
   "suggest.completionItemKindLabels": {
     "method": "  ",
@@ -36,7 +36,7 @@
     "constructor": "  ",
     "value": "  ",
     "enumMember": "  "
-  }, 
+  },
   // explorer
   "explorer.icon.enableNerdfont": true,
   "explorer.file.root.template": "[icon] [git] [hidden & 1][root]",
@@ -47,10 +47,8 @@
   "explorer.previewAction.onHover": false,
   "explorer.keyMappings.global": {
     "i": false, // cancel default mapkey
-      
     "*": "toggleSelection",
     "<tab>": "actionMenu",
-
     "gk": ["wait", "expandablePrev"],
     "gj": ["wait", "expandableNext"],
     "h": ["wait", "collapse"],
@@ -77,7 +75,6 @@
     "Il": "previewOnHover:toggle:labeling",
     "Ic": "previewOnHover:toggle:content",
     "II": "previewOnHover:disable",
-
     "yp": "copyFilepath",
     "yn": "copyFilename",
     // "yy": "copyFile",
@@ -85,51 +82,40 @@
     // "p": "pasteFile",
     // "df": "delete",
     // "dF": "deleteForever",
-
     "a": "addFile",
     "A": "addDirectory",
     "r": "rename",
-
     "zh": "toggleHidden",
     "g<dot>": "toggleHidden",
     "R": "refresh",
-
     "?": "help",
     "q": "quit",
     "<esc>": "esc",
     //"X": "systemExecute",
     "gd": "listDrive",
-
     "f": "search",
     "F": "searchRecursive",
-
     "gf": "gotoSource:file",
     "gb": "gotoSource:buffer",
-
     "[[": ["wait", "sourcePrev"],
     "]]": ["wait", "sourceNext"],
-
     "[i": ["wait", "indentPrev"],
     "]i": ["wait", "indentNext"],
-
     "[m": ["wait", "markPrev:modified"],
     "]m": ["wait", "markNext:modified"],
-
     "[d": ["wait", "markPrev:diagnosticError:diagnosticWarning"],
     "]d": ["wait", "markNext:diagnosticError:diagnosticWarning"],
     "[D": ["wait", "markPrev:diagnosticError"],
     "]D": ["wait", "markNext:diagnosticError"],
-
     "[c": ["wait", "markPrev:git"],
     "]c": ["wait", "markNext:git"],
     "<<": "gitStage",
     ">>": "gitUnstage",
-
     // Custom
     "v": "open:vsplit",
     "Y": "copyFile",
     "X": "cutFile",
     "P": "pasteFile",
     "D": "delete"
-    }
+  }
 }

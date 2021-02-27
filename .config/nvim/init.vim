@@ -5,11 +5,12 @@
 "/___/_/ /_/_/\__(_)___/_/_/ /_/ /_/
 
 
-" General Settings
+" Setup polyglot before loading plugins
 if !exists('g:vscode')
   source $HOME/.config/nvim/plug-conf/polyglot.vim
 endif
 
+" General Settings
 source $HOME/.config/nvim/plugins.vim
 source $HOME/.config/nvim/settings.vim
 source $HOME/.config/nvim/mappings.vim
@@ -33,12 +34,10 @@ else
   source $HOME/.config/nvim/plug-conf/gitgutter.vim
   source $HOME/.config/nvim/plug-conf/highlightyank.vim
   source $HOME/.config/nvim/plug-conf/markdown-preview.vim
-  source $HOME/.config/nvim/plug-conf/polyglot.vim
   source $HOME/.config/nvim/plug-conf/rainbow.vim
   source $HOME/.config/nvim/plug-conf/rnvimr.vim
   source $HOME/.config/nvim/plug-conf/start-screen.vim
   source $HOME/.config/nvim/plug-conf/vim-commentary.vim
-  source $HOME/.config/nvim/plug-conf/vim-easymotion.vim
   source $HOME/.config/nvim/plug-conf/vim-router.vim
   source $HOME/.config/nvim/plug-conf/vim-windowsnap.vim
   source $HOME/.config/nvim/plug-conf/which-key.vim

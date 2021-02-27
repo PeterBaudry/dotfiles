@@ -20,6 +20,6 @@ set showtabline=2
 " We don't need to see things like -- INSERT -- anymore
 set noshowmode
 
-let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'z', 'warning', 'error']]
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z', 'warning', 'error']]
 let g:airline_section_c = airline#section#create([''])
 let g:airline_section_y = ''

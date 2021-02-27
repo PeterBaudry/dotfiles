@@ -59,6 +59,8 @@ call plug#begin('~/.config/nvim/autoload/plugged')
       Plug 'liuchengxu/vim-which-key'  
       " Terminal
       Plug 'voldikss/vim-floaterm'
+      " Intuitive buffer closing
+      Plug 'moll/vim-bbye'
       
       " Project management
       

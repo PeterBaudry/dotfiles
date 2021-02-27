@@ -4,17 +4,17 @@ let g:startify_custom_header = [
         \ '      /  |/ /| | / / /   / __ \/ __  / _ \',
         \ '     / /|  / | |/ / /___/ /_/ / /_/ /  __/',
         \ '    /_/ |_/  |___/\____/\____/\__,_/\___/ ',
-        \]
+\]
                                       
 let g:startify_session_dir = '~/.config/nvim/session'
 
 
 let g:startify_lists = [
-          \ { 'type': 'files',     'header': ['   Recent files']                        },
-          \ { 'type': 'sessions',  'header': ['   Sessions']                     },
-          \ { 'type': 'dir',       'header': ['   '. getcwd()] },
-          \ { 'type': 'bookmarks', 'header': ['   Bookmarks']                    },
-          \ ]
+        \ { 'type': 'files',     'header': ['   Recent files'] },
+        \ { 'type': 'sessions',  'header': ['   Sessions'] },
+        \ { 'type': 'dir',       'header': ['   '. getcwd()] },
+        \ { 'type': 'bookmarks', 'header': ['   Bookmarks'] },
+\ ]
 
 
 let g:startify_session_autoload = 1
@@ -30,8 +30,9 @@ function! StartifyEntryFormat()
     endfunction
 
 let g:startify_bookmarks = [
-            \ { 'i': '~/.config/nvim/init.vim' },
-            \ { 'z': '~/.zshrc' },
-            \ ]
+        \ { 'a': '~/.config/alacritty/alacritty.yml' },
+        \ { 'i': '~/.config/nvim/init.vim' },
+        \ { 'z': '~/.zshrc' },
+\ ]
 
 let g:startify_enable_special = 0
