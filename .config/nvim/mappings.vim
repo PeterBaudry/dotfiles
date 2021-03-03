@@ -62,8 +62,6 @@ else
 
   " Alternate way to save
   nnoremap <silent> <S-s> :wa<CR>
-  " Return to normal mode on save
-  inoremap <silent> <S-s> <Esc>:wa<CR>
 
   " Use control-c instead of escape
   nnoremap <silent> <C-c> <Esc>

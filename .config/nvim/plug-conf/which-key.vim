@@ -25,42 +25,36 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
 " Single mappings
+let g:which_key_map['.'] = [ ':e $MYVIMRC'                                     , 'open init' ]
 let g:which_key_map[':'] = [ ':call Comment()<CR>'                             , 'comment' ]
 let g:which_key_map[';'] = [ ':Commands'                                       , 'commands' ]
 let g:which_key_map['='] = [ '<C-W>='                                          , 'balance windows' ]
 let g:which_key_map['e'] = [ ':CocCommand explorer --toggle --sources=file+'   , 'explorer' ]
+let g:which_key_map['g'] = [ '<Plug>(git-messenger)'                           , 'git message']
 let g:which_key_map['h'] = [ '<C-W>s'                                          , 'split below']
+let g:which_key_map['m'] = [ ':MaximizerToggle'                                , 'maximize window' ]
 let g:which_key_map['o'] = [ ':Files'                                          , 'search in files' ]
 let g:which_key_map['s'] = [ ':Startify'                                       , 'start page']
 let g:which_key_map['r'] = [ ':RnvimrToggle'                                   , 'ranger' ]
 let g:which_key_map['q'] = [ '<Plug>(coc-fix-current)'                         , 'quickfix' ]
 let g:which_key_map['v'] = [ '<C-W>v'                                          , 'split right']
-" Group mappings
+let g:which_key_map['h'] = [ '<Plug>(easymotion-h)'                            , 'move left']
+let g:which_key_map['j'] = [ '<Plug>(easymotion-j)'                            , 'move down']
+let g:which_key_map['k'] = [ '<Plug>(easymotion-k)'                            , 'move up']
+let g:which_key_map['l'] = [ '<Plug>(easymotion-l)'                            , 'move right']
+let g:which_key_map['w'] = [ '<Plug>(easymotion-w)'                            , 'move words']
 
-" a is for actions
-let g:which_key_map.a = {
-      \ 'name' : '+actions' ,
-      \ 'c' : [':ColorizerToggle'        , 'colorizer'],
-      \ 'h' : [':let @/ = ""'            , 'remove search highlight'],
-      \ 's' : [':s/\%V\(.*\)\%V/"\1"/'   , 'surround'],
-      \ 't' : [':FloatermToggle'         , 'terminal'],
-      \ }
+" Group mappings
 
 " b is for buffer
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
-      \ '>' : [':BufferMoveNext'        , 'move next'],
-      \ '<' : [':BufferMovePrevious'    , 'move prev'],
-      \ 'b' : [':BufferPick'            , 'pick buffer'],
       \ 'd' : [':Bdelete'               , 'delete-buffer'],
-      \ 'D' : [':BufferOrderByDirectory', 'order by directory'],
       \ 'f' : ['bfirst'                 , 'first-buffer'],
       \ 'l' : ['blast'                  , 'last buffer'],
-      \ 'L' : [':BufferOrderByLanguage' , 'order by language'],
       \ 'n' : ['bnext'                  , 'next-buffer'],
       \ 'p' : ['bprevious'              , 'previous-buffer'],
-      \ 'm' : [':MaximizerToggle'       , 'maximize window'],
-      \ '?' : ['Buffers'                , 'fzf-buffer'],
+      \ 'b' : ['Buffers'                , 'fzf-buffer'],
       \ }
 
 " c is for code completion
@@ -103,39 +97,9 @@ let g:which_key_map.c = {
 
 " f is for find and replace
 let g:which_key_map.f = {
-      \ 'name' : '+find & replace' ,
-      \ 'f' : [':Farr --source=vimgrep'    , 'file'],
+      \ 'name' : '+far' ,
+      \ 'f' : [':Farr'                     , 'file'],
       \ 'p' : [':Farr --source=rgnvim'     , 'project'],
-      \ }
-
-" g is for git
-let g:which_key_map.g = {
-      \ 'name' : '+git' ,
-      \ 'a' : [':Git add .'                        , 'add all'],
-      \ 'A' : [':CocCommand fzf-preview.GitStatus' , 'actions'],
-      \ 'b' : [':Git blame'                        , 'blame'],
-      \ 'B' : [':GBrowse'                          , 'browse'],
-      \ 'c' : [':Git commit'                       , 'commit'],
-      \ 'd' : [':Git diff'                         , 'diff'],
-      \ 'D' : [':Gdiffsplit'                       , 'diff split'],
-      \ 'g' : [':GGrep'                            , 'git grep'],
-      \ 'G' : [':Gstatus'                          , 'status'],
-      \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
-      \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
-      \ 'i' : [':Gist -b'                          , 'post gist'],
-      \ 'j' : ['<Plug>(GitGutterNextHunk)'         , 'next hunk'],
-      \ 'k' : ['<Plug>(GitGutterPrevHunk)'         , 'prev hunk'],
-      \ 'l' : [':Git log'                          , 'log'],
-      \ 'm' : ['<Plug>(git-messenger)'             , 'message'],
-      \ 'p' : [':Git push'                         , 'push'],
-      \ 'P' : [':Git pull'                         , 'pull'],
-      \ 'r' : [':GRemove'                          , 'remove'],
-      \ 's' : ['<Plug>(GitGutterStageHunk)'        , 'stage hunk'],
-      \ 'S' : [':CocCommand fzf-preview.GitStatus' , 'status'],
-      \ 't' : [':GitGutterSignsToggle'             , 'toggle signs'],
-      \ 'u' : ['<Plug>(GitGutterUndoHunk)'         , 'undo hunk'],
-      \ 'v' : [':GV'                               , 'view commits'],
-      \ 'V' : [':GV!'                              , 'view buffer commits'],
       \ }
 
 let g:which_key_map.S = {

@@ -17,15 +17,15 @@ call plug#begin('~/.config/nvim/autoload/plugged')
 
     if exists('g:vscode')
 
-      " Enable easy-motion
-      Plug 'ChristianChiarulli/vscode-easymotion'
       " Highlight selected text
       Plug 'machakann/vim-highlightedyank'
 
     else
 
       " Text helpers
-      
+
+      " Write files with sudo
+      Plug 'lambdalisue/suda.vim'     
       " Better Syntax Support
       Plug 'sheerun/vim-polyglot'
       " Auto pairs for '(' '[' '{' ...
@@ -41,7 +41,7 @@ call plug#begin('~/.config/nvim/autoload/plugged')
       " Emmet support
       Plug 'mattn/emmet-vim'
       " Find and replace
-      Plug 'ChristianChiarulli/far.vim'
+      Plug 'brooth/far.vim'
       " COC
       Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -66,9 +66,6 @@ call plug#begin('~/.config/nvim/autoload/plugged')
       
       " Git
       Plug 'airblade/vim-gitgutter'
-      Plug 'tpope/vim-fugitive'
-      Plug 'tpope/vim-rhubarb'
-      Plug 'junegunn/gv.vim'
       Plug 'rhysd/git-messenger.vim'
       " Start Screen
       Plug 'mhinz/vim-startify'

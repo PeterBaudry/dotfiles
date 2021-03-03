@@ -1,8 +1,4 @@
-#!/bin/bash
-
-# Set screen brightness
-gdbus call --session --dest org.gnome.SettingsDaemon.Power --object-path /org/gnome/SettingsDaemon/Power --method org.freedesktop.DBus.Properties.Set org.gnome.SettingsDaemon.Power.Screen Brightness "<int32 20>"
-
+#!/usr/bin/env bash
 
 wget -q --spider http://google.com
 
@@ -15,3 +11,11 @@ if [ $? -eq 0 ]; then
 else
     echo "Offline"
 fi
+
+# Load xrandr profiles
+autorandr --change &
+
+# Set touchpad options
+xinput set-prop "DLL0945:00 06CB:CDE6 Touchpad" 331 1
+xinput set-prop "DLL0945:00 06CB:CDE6 Touchpad" 313 1
+xinput set-prop "DLL0945:00 06CB:CDE6 Touchpad" 339 1

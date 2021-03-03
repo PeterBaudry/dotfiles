@@ -75,7 +75,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting zsh-vi-mode)
+plugins=(git zsh-autosuggestions zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,19 +104,50 @@ export MANPAGER="nvim -c 'set ft=man' -"
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 
+# Extract all files based on type
+function extract() {
+    if [ -f $1 ] ; then
+        case $1 in
+            *.tar.bz2)  tar xjf $1      ;;
+            *.tar.gz)   tar xzf $1      ;;
+            *.bz2)      bunzip2 $1      ;;
+            *.rar)      rar x $1        ;;
+            *.gz)       gunzip $1       ;;
+            *.tar)      tar xf $1       ;;
+            *.tbz2)     tar xjf $1      ;;
+            *.tgz)      tar xzf $1      ;;
+            *.zip)      unzip $1        ;;
+            *.Z)        uncompress $1   ;;
+            *)          echo "'$1' cannot be extracted via extract()" ;;
+        esac
+    else
+        echo "'$1' is not a valid file"
+    fi
+}
+alias extract="extract"
 alias ll="ls -al"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias nv="nvim"
+alias vim="nvim"
+alias awesome-test="Xephyr -ac -nolisten tcp -br -noreset -screen 800x600 :1 &; DISPLAY=:1.0 awesome"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Key bindings
-# bindkey '^H' backward-kill-word
-# bindkey '^[[3;5~' kill-word
+# Enable ctrl+backspace/delete for deleting words
+bindkey '^H' backward-kill-word
+bindkey '^[[3;5~' kill-word
 
 # Custom variables
+# Hide powerline errors
 export OPENCV_LOG_LEVEL=ERROR
+
+# Enable gnome-keyring-daemon for ssh
+if [ -n "$DESKTOP_SESSION" ];then
+    eval $(gnome-keyring-daemon --start)
+    export SSH_AUTH_SOCK
+fi
 
 # Custom options
 setopt complete_aliases
@@ -125,4 +156,4 @@ setopt complete_aliases
 
 # ZSH-VI-MODE
 
-ZVM_VI_ESCAPE_BINDKEY=kj
+#ZVM_VI_ESCAPE_BINDKEY=kj

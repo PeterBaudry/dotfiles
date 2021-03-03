@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+# After loading a new profile, reload the window manager automatically
+echo 'awesome.restart()' | awesome-client
