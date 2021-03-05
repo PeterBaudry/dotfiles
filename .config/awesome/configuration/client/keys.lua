@@ -6,15 +6,19 @@ local modkey = require('configuration.keys.mod').mod_key
 local altkey = require('configuration.keys.mod').alt_key
 
 local client_keys = awful.util.table.join(
+
+	-- Toggle fullscreen
 	awful.key(
 		{modkey},
-		'f',
+		'space',
 		function(c)
 			c.fullscreen = not c.fullscreen
 			c:raise()
 		end,
 		{description = 'toggle fullscreen', group = 'client'}
 	),
+
+	-- Close client
 	awful.key(
 		{modkey},
 		'q',
@@ -23,75 +27,124 @@ local client_keys = awful.util.table.join(
 		end,
 		{description = 'close', group = 'client'}
 	),
-	awful.key(
-		{modkey},
-		'l',
-		function()
-			awful.client.focus.byidx(1)
-		end,
-		{description = 'focus next by index', group = 'client'}
-	),
+
+	-- Focus clients
 	awful.key(
 		{modkey},
 		'h',
 		function()
 			awful.client.focus.byidx(-1)
 		end,
-		{description = 'focus previous by index', group = 'client'}
+		{description = 'focus previous/next client', group = 'client'}
+	),
+	awful.key(
+		{modkey},
+		'l',
+		function()
+			awful.client.focus.byidx(1)
+		end,
+		{description = 'focus previous/next client', group = 'client'}
+	),
+
+	-- Swap clients
+	awful.key(
+		{ modkey, 'Shift' },
+		'h',
+		function ()
+			awful.client.swap.byidx(-1)
+		end,
+		{description = 'swap with previous/next client', group = 'client'}
 	),
 	awful.key(
 		{ modkey, 'Shift'  },
 		'l',
 		function ()
-			awful.client.swap.global_bydirection('right')
+			awful.client.swap.byidx(1)
 		end,
-		{description = 'swap with client by direction', group = 'client'}
+		{description = 'swap with previous/next client', group = 'client'}
+	),
+
+	-- Move client to tag.
+	awful.key(
+		{modkey, 'Shift'},
+		'k',
+		function()
+			local t = client.focus and client.focus.first_tag or nil
+			if t == nil then
+					return
+			end
+
+			local tag = client.focus.screen.tags[(t.name - 2) % 6 + 1]
+			awful.client.movetotag(tag)
+			awful.tag.viewprev()
+		end,
+	{description = 'move client to previous/next tag', group = 'client'}
 	),
 	awful.key(
-		{ modkey, 'Shift' },
+		{modkey, 'Shift'},
+		'j',
+		function()
+			local t = client.focus and client.focus.first_tag or nil
+			if t == nil then
+					return
+			end
+
+			local tag = client.focus.screen.tags[(t.name % 6) + 1]
+			awful.client.movetotag(tag)
+			awful.tag.viewnext()
+		end,
+	{description = 'move client to previous/next tag', group = 'client'}
+	),
+
+	-- Move clients to screen
+	awful.key(
+		{ modkey, 'Shift', 'Control' },
 		'h',
-		function ()
-			awful.client.swap.global_bydirection('left')
+		function (c)
+			c:move_to_screen(c.screen.index-1)
 		end,
-		{description = 'swap with client by direction', group = 'client'}
+		{description = 'move client to previous/next screen', group = 'client'}
 	),
 	awful.key(
-		{modkey}, 
-		'u', 
-		awful.client.urgent.jumpto, 
-		{description = 'jump to urgent client', group = 'client'}
+		{ modkey, 'Shift', 'Control' },
+		'l',
+		function (c)
+			c:move_to_screen(c.screen.index+1)
+		end,
+		{description = 'move client to previous/next screen', group = 'client'}
 	),
+
+	-- Jump to urgent
 	awful.key(
 		{modkey},
-		'Tab',
+		'u',
+		awful.client.urgent.jumpto,
+		{description = 'jump to urgent client', group = 'client'}
+	),
+
+	-- Minimize clients
+	awful.key(
+			{modkey},
+			'n',
+			function(c)
+					c.minimized = true
+			end,
+			{description = 'minimize client', group = 'client'}
+	),
+	awful.key(
+		{modkey, 'Control'},
+		'n',
 		function()
-			awful.client.focus.history.previous()
-			if client.focus then
-				client.focus:raise()
+			local c = awful.client.restore()
+			if c then
+				c:emit_signal('request::activate')
+				c:raise()
 			end
 		end,
-		{description = 'go back', group = 'client'}
+		{description = 'restore minimized client', group = 'client'}
 	),
-    awful.key(
-        {modkey},
-        'n',
-        function(c)
-            c.minimized = true
-        end,
-        {description = 'minimize client', group = 'client'}
-    ),
-	awful.key(
-		{ modkey, 'Shift' }, 
-		'c', 
-		function(c)
-			local focused = awful.screen.focused()
 
-			awful.placement.centered(c, {
-				honor_workarea = true
-			})
-		end,
-		{description = 'align a client to the center of the focused screen', group = 'client'}
-	),
+	-- Floating clients
 	awful.key(
 		{modkey},
 		'c',
@@ -102,6 +155,18 @@ local client_keys = awful.util.table.join(
 			c:raise()
 		end,
 		{description = 'toggle floating', group = 'client'}
+	),
+	awful.key(
+		{ modkey, 'Shift' },
+		'c',
+		function(c)
+			local focused = awful.screen.focused()
+
+			awful.placement.centered(c, {
+				honor_workarea = true
+			})
+		end,
+		{description = 'align a client to center', group = 'client'}
 	),
 	awful.key(
 		{modkey},

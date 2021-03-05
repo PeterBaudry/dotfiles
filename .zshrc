@@ -129,7 +129,7 @@ alias ll="ls -al"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias nv="nvim"
 alias vim="nvim"
-alias awesome-test="Xephyr -ac -nolisten tcp -br -noreset -screen 800x600 :1 &; DISPLAY=:1.0 awesome"
+alias awesome-test="Xephyr -ac -nolisten tcp -br -noreset -screen 800x600 :1 &; sleep 1; DISPLAY=:1.0 awesome"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh

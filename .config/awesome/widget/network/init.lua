@@ -12,7 +12,7 @@
 local awful = require('awful')
 local wibox = require('wibox')
 local gears = require('gears')
-local naughty = require('naughty') 
+local naughty = require('naughty')
 local dpi = require('beautiful').xresources.apply_dpi
 local apps = require('configuration.apps')
 local clickable_container = require('widget.clickable-container')
@@ -56,7 +56,7 @@ local return_button = function()
 		},
 		widget = clickable_container
 	}
-	
+
 	widget_button:buttons(
 		gears.table.join(
 			awful.button(
@@ -115,7 +115,7 @@ local return_button = function()
 	end
 
 	local network_notify = function(message, title, app_name, icon)
-		naughty.notification({ 
+		naughty.notification({
 			message = message,
 			title = title,
 			app_name = app_name,
@@ -150,7 +150,7 @@ local return_button = function()
 						'</b>\nWireless Interface: <b>' .. interfaces.wlan_interface ..
 						'</b>\nWiFi-Strength: <b>' .. tostring(wifi_strength) .. '%' ..
 						'</b>\nBit rate: <b>' .. tostring(bitrate) .. '</b>'
-					
+
 					if healthy then
 						update_tooltip(message)
 					else
@@ -185,7 +185,7 @@ local return_button = function()
 				end
 			)
 		end
-		
+
 		-- Get wifi strength
 		local update_wireless_strength = function()
 			awful.spawn.easy_async_with_shell(
@@ -224,7 +224,7 @@ local return_button = function()
 			function(stdout)
 
 				local widget_icon_name = 'wired'
-				
+
 				if stdout:match('Connected but no internet') then
 					widget_icon_name = widget_icon_name .. '-alert'
 					update_tooltip(
@@ -349,7 +349,7 @@ local return_button = function()
 		call_now = true,
 		callback = function()
 			check_network_mode()
-		end	
+		end
 	}
 
 	return widget_button

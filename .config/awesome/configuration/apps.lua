@@ -10,7 +10,7 @@ return {
 		-- Default web browser
 		web_browser = 'brave',
 		-- Default text editor
-		text_editor = 'alacritty nvim',
+		text_editor = 'code',
 		-- Default file manager
 		file_manager = 'nautilus',
 		-- Default media player
@@ -73,7 +73,6 @@ return {
 
 		-- You can add more start-up applications here
 		'/home/pbaudry/.src/scripts/startup.sh',
-		'libinput-gestures-setup start'
 	},
 
 	-- List of binaries/shell scripts that will execute for a certain task

@@ -33,7 +33,7 @@ local global_keys = awful.util.table.join(
 	-- Layout
 	awful.key(
 		{modkey},
-		'space',
+		'Escape',
 		function()
 			awful.layout.inc(1)
 		end,
@@ -41,11 +41,27 @@ local global_keys = awful.util.table.join(
 	),
 	awful.key(
 		{modkey, 'Shift'},
-		'space',
+		'Escape',
 		function()
 			awful.layout.inc(-1)
 		end,
 		{description = 'select previous layout', group = 'layout'}
+	),
+	awful.key(
+		{modkey},
+		'KP_Add',
+		function()
+			awful.tag.incncol(1, nil, true)
+		end,
+		{description = 'decrease/increase the number of columns', group = 'layout'}
+	),
+	awful.key(
+		{modkey},
+		'KP_Subtract',
+		function()
+			awful.tag.incncol(-1, nil, true)
+		end,
+		{description = 'decrease/increase the number of columns', group = 'layout'}
 	),
 
 	-- Tags
@@ -53,13 +69,27 @@ local global_keys = awful.util.table.join(
 		{modkey},
 		'k',
 		awful.tag.viewprev,
-		{description = 'view previous tag', group = 'tags'}
+		{description = 'view previous tag', group = 'tag'}
 	),
 	awful.key(
 		{modkey},
 		'j',
 		awful.tag.viewnext,
-		{description = 'view next tag', group = 'tags'}
+		{description = 'view next tag', group = 'tag'}
+	),
+	awful.key(
+		{'Control'},
+		'Return',
+				function()
+					local s = awful.screen.focused()
+					awful.spawn(
+						s.selected_tag.default_app,
+						{
+							tag = s.selected_tag
+						}
+					)
+				end,
+		{description = 'open default app', group = 'tag'}
 	),
 
 	-- Screens
@@ -80,28 +110,7 @@ local global_keys = awful.util.table.join(
 		{ description = 'focus the next screen', group = 'screens'}
 	),
 
-
-
-
-	awful.key(
-		{modkey},
-		'Escape',
-		awful.tag.history.restore,
-		{description = 'alternate between current and previous tag', group = 'tag'}
-	),
-	awful.key(
-		{modkey, 'Control'},
-		'n',
-		function()
-			local c = awful.client.restore()
-			-- Focus restored client
-			if c then
-				c:emit_signal('request::activate')
-				c:raise()
-			end
-		end,
-		{description = 'restore minimized', group = 'screen'}
-	),
+	-- Brightness
 	awful.key(
 		{},
 		'XF86MonBrightnessUp',
@@ -122,6 +131,9 @@ local global_keys = awful.util.table.join(
 		end,
 		{description = 'decrease brightness by 10%', group = 'hotkeys'}
 	),
+
+
+
 	-- ALSA volume control
 	awful.key(
 		{},
@@ -250,14 +262,14 @@ local global_keys = awful.util.table.join(
 		end,
 		{description = 'area/selected screenshot', group = 'Utility'}
 	),
-	awful.key(
-		{modkey},
-		'x',
-		function()
-			awesome.emit_signal('widget::blur:toggle')
-		end,
-		{description = 'toggle blur effects', group = 'Utility'}
-	),
+	-- awful.key(
+	-- 	{modkey},
+	-- 	'x',
+	-- 	function()
+	-- 		awesome.emit_signal('widget::blur:toggle')
+	-- 	end,
+	-- 	{description = 'toggle blur effects', group = 'Utility'}
+	-- ),
 	awful.key(
 		{modkey},
 		']',
@@ -297,14 +309,14 @@ local global_keys = awful.util.table.join(
 		end,
 		{description = 'toggle systray visibility', group = 'Utility'}
 	),
-	-- awful.key(
-	-- 	{modkey},
-	-- 	'l',
-	-- 	function()
-	-- 		awful.spawn(apps.default.lock, false)
-	-- 	end,
-	-- 	{description = 'lock the screen', group = 'Utility'}
-	-- ),
+	awful.key(
+		{modkey},
+		'x',
+		function()
+			awful.spawn(apps.default.lock, false)
+		end,
+		{description = 'lock the screen', group = 'Utility'}
+	),
 	awful.key(
 		{modkey},
 		'Return',
@@ -451,11 +463,10 @@ local global_keys = awful.util.table.join(
 -- Be careful: we use keycodes to make it work on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 6 do
-	-- Hack to only show tags 1 and 9 in the shortcut window (mod+s)
-	local descr_view, descr_toggle, descr_move, descr_toggle_focus
+	-- Hack to only show tags 1 and 6 in the shortcut window (mod+s)
+	local descr_view, descr_move, descr_toggle_focus
 	if i == 1 or i == 6 then
 		descr_view = {description = 'view tag #', group = 'tag'}
-		descr_toggle = {description = 'toggle tag #', group = 'tag'}
 		descr_move = {description = 'move focused client to tag #', group = 'tag'}
 		descr_toggle_focus = {description = 'toggle focused client on tag #', group = 'tag'}
 	end
@@ -474,19 +485,6 @@ for i = 1, 6 do
 				end
 			end,
 			descr_view
-		),
-		-- Toggle tag display.
-		awful.key(
-			{modkey, 'Control'},
-			'#' .. i + 9,
-			function()
-				local focused = awful.screen.focused()
-				local tag = focused.tags[i]
-				if tag then
-					awful.tag.viewtoggle(tag)
-				end
-			end,
-			descr_toggle
 		),
 		-- Move client to tag.
 		awful.key(

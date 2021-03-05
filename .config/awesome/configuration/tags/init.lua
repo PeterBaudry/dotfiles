@@ -9,43 +9,37 @@ local tags = {
 		type = 'internet',
 		icon = icons.network,
 		default_app = apps.default.web_browser,
-		gap = beautiful.useless_gap,
-		layout = awful.layout.suit.dwindle
+		gap = beautiful.useless_gap
 	},
 	{
 		type = 'code',
 		icon = icons.development,
 		default_app = apps.default.text_editor,
-		gap = beautiful.useless_gap,
-		layout = awful.layout.suit.dwindle
+		gap = beautiful.useless_gap
 	},
 	{
 	  type = 'social',
 	  icon = icons.social,
 	  default_app = 'ferdi',
-	  gap = beautiful.useless_gap,
-		layout = awful.layout.suit.dwindle
+	  gap = beautiful.useless_gap
 	},
 	{
 		type = 'files',
 		icon = icons.file_manager,
 		default_app = apps.default.file_manager,
-		gap = beautiful.useless_gap,
-		layout = awful.layout.suit.dwindle
+		gap = beautiful.useless_gap
 	},
 	{
 		type = 'games',
 		icon = icons.games,
 		default_app = apps.default.game,
-		gap = beautiful.useless_gap,
-		layout = awful.layout.suit.dwindle
+		gap = beautiful.useless_gap
 	},
 	{
 		type = 'any',
 		icon = icons.utilities,
 		default_app = apps.default.terminal,
-		gap = beautiful.useless_gap,
-		layout = awful.layout.suit.dwindle
+		gap = beautiful.useless_gap
 	}
 }
 
@@ -54,8 +48,8 @@ tag.connect_signal(
 	'request::default_layouts',
 	function()
 	    awful.layout.append_default_layouts({
-			awful.layout.suit.spiral.dwindle,
-			awful.layout.suit.max
+				awful.layout.suit.tile.right,
+				awful.layout.suit.max
 	    })
 	end
 )
@@ -70,7 +64,7 @@ screen.connect_signal(
 				{
 					icon = tag.icon,
 					icon_only = true,
-					layout = tag.layout or awful.layout.suit.spiral.dwindle,
+					layout = tag.layout or awful.layout.suit.tile.right,
 					gap_single_client = true,
 					gap = tag.gap,
 					screen = s,

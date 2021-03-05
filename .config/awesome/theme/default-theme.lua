@@ -14,8 +14,8 @@ local tip = titlebar_icon_path
 local theme = {}
 
 -- Font
-theme.font = 'Inter Regular 10'
-theme.font_bold = 'Inter Bold 10'
+theme.font = 'Roboto Regular 10'
+theme.font_bold = 'Roboto Bold 10'
 
 -- Menu icon theme
 theme.icon_theme = 'Tela-blue-dark'
@@ -26,7 +26,7 @@ local awesome_overrides = function(theme)
 	theme.icons = theme_dir .. '/icons/'
 
 	-- Default wallpaper path
-	theme.wallpaper = theme.dir .. '/wallpapers/morning-wallpaper.jpg'
+	theme.wallpaper = theme.dir .. '/wallpapers/firewatcher.jpg'
 
 	-- Default font
 	theme.font = 'Roboto Regular 10'
