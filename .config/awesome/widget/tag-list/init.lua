@@ -125,16 +125,6 @@ local tag_list = function(s)
 					t:view_only()
 				end
 			),
-			awful.button(
-				{modkey},
-				1,
-				function(t)
-					if _G.client.focus then
-						_G.client.focus:move_to_tag(t)
-						t:view_only()
-					end
-				end
-			),
 			awful.button({}, 3, awful.tag.viewtoggle),
 			awful.button(
 				{modkey},

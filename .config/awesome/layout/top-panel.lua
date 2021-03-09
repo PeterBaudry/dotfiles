@@ -38,7 +38,7 @@ local top_panel = function(s, offset)
 		function() 
 			local w = mouse.current_wibox
 			if w then
-				w.cursor = 'left_ptr'
+				w.cursor = 'hand1'
 			end
 		end
 	)
@@ -56,12 +56,8 @@ local top_panel = function(s, offset)
 	local add_button 		= require('widget.open-default-app')(s)
 	s.tray_toggler  		= require('widget.tray-toggle')
 	s.updater 				= require('widget.package-updater')()
-	s.screen_rec 			= require('widget.screen-recorder')()
-	s.mpd       			= require('widget.mpd')()
-	s.bluetooth   			= require('widget.bluetooth')()
 	s.battery     			= require('widget.battery')()
-	s.network       		= require('widget.network')()
-	s.info_center_toggle	= require('widget.info-center-toggle')()
+	s.control_center_toggle = require('widget.control-center-toggle')()
 
 	panel : setup {
 		layout = wibox.layout.align.horizontal,
@@ -82,13 +78,9 @@ local top_panel = function(s, offset)
 			},
 			s.tray_toggler,
 			s.updater,
-			s.screen_rec,
-			s.mpd,
-			s.network,
-			s.bluetooth,
 			s.battery,
 			layout_box,
-			s.info_center_toggle
+			s.control_center_toggle,
 		}
 	}
 

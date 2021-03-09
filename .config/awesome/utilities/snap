@@ -28,10 +28,24 @@ function shot() {
 
 	check_dir
 
-	file_loc="${screenshot_dir}$(date +%Y%m%d_%H%M%S).png"
-	
-	maim_command="$1"
-	notif_message="$2"
+	save_dir="${screenshot_dir}"
+
+	maim_command="maim -u -l -b 0 -c 0,0,0,0.4"
+
+	notif_message="Screenshot saved !"
+
+	if [ "$1" = 'area' ];
+	then
+		maim_command="$maim_command -s"
+	fi
+
+	if [ "$2" = 'copy' ];
+	then
+		save_dir="/tmp/"
+		notif_message="Screenshot copied to clipboard !"
+	fi
+
+	file_loc="${save_dir}$(date +%Y%m%d_%H%M%S).png"
 
 	# Execute maim command
 	${maim_command} "${file_loc}"
@@ -44,7 +58,7 @@ function shot() {
 	fi
 
 	# Copy to clipboard
-	xclip -selection clipboard -t image/png -i "${screenshot_dir}"/`ls -1 -t "${screenshot_dir}" | head -1` &
+	xclip -selection clipboard -t image/png -i "${save_dir}"/`ls -1 -t "${save_dir}" | head -1` &
 
 	awesome-client "
 
@@ -75,7 +89,7 @@ function shot() {
 	end)
 
 	open_folder:connect_signal('invoked', function()
-		awful.spawn('xdg-open ' .. '${screenshot_dir}', false)
+		awful.spawn('xdg-open ' .. '${save_dir}', false)
 	end)
 
 	-- Execute the callback when 'Delete' is pressed
@@ -96,25 +110,31 @@ function shot() {
 
 }
 
-# Check the args passed
-if [ -z "$1" ] || ([ "$1" != 'full' ] && [ "$1" != 'area' ]);
-then
-	echo "
-	Requires an argument:
-	area 	- Area screenshot
-	full 	- Fullscreen screenshot
+# Take appropriate action
+case $1 in
 
-	Example:
-	./snap area
-	./snap full
-	"
-elif [ "$1" = 'full' ];
-then
-	msg="Full screenshot saved and copied to clipboard!"
-	shot 'maim -u -m 1' "${msg}"
-elif [ "$1" = 'area' ];
-then
-	msg='Area screenshot saved and copied to clipboard!'
-	shot 'maim -u -s -n -m 1' "${msg}"
-fi
+	full)
+		shot full copy
+		;;
+	selection)
+		shot area copy
+		;;
+
+	full_saved)
+		shot full save
+		;;
+	selection_saved)
+		shot area save
+		;;
+	*)
+		echo "
+		Requires an argument:
+		full 				- Full screenshot to clipboard
+		selection 			- Selection screenshot to clipboard
+		full_saved 			- Full screenshot
+		selection_saved 	- Selection screenshot
+		"
+		;;
+
+esac
 

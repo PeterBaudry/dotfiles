@@ -45,7 +45,7 @@ ruled.notification.connect_signal(
 		ruled.notification.append_rule {
 			rule       = { urgency = 'critical' },
 			properties = { 
-				font        		= 'Inter Bold 10',
+				font        		= 'Roboto Bold 10',
 				bg 					= '#ff0000', 
 				fg 					= '#ffffff',
 				margin 				= dpi(16),
@@ -58,7 +58,7 @@ ruled.notification.connect_signal(
 		ruled.notification.append_rule {
 			rule       = { urgency = 'normal' },
 			properties = {
-				font        		= 'Inter Regular 10',
+				font        		= 'Roboto Regular 10',
 				bg      			= beautiful.transparent, 
 				fg 					= beautiful.fg_normal,
 				margin 				= dpi(16),
@@ -71,7 +71,7 @@ ruled.notification.connect_signal(
 		ruled.notification.append_rule {
 			rule       = { urgency = 'low' },
 			properties = { 
-				font        		= 'Inter Regular 10',
+				font        		= 'Roboto Regular 10',
 				bg     				= beautiful.transparent,
 				fg 					= beautiful.fg_normal,
 				margin 				= dpi(16),
@@ -129,7 +129,7 @@ naughty.connect_signal(
 						{
 							{
 								id     = 'text_role',
-								font   = 'Inter Regular 10',
+								font   = 'Roboto Regular 10',
 								widget = wibox.widget.textbox
 							},
 							widget = wibox.container.place
@@ -166,7 +166,7 @@ naughty.connect_signal(
 												{
 													{
 														markup = n.app_name or 'System Notification',
-														font = 'Inter Bold 10',
+														font = 'Roboto Bold 10',
 														align = 'center',
 														valign = 'center',
 														widget = wibox.widget.textbox
@@ -246,10 +246,10 @@ naughty.connect_signal(
 		}
 	
 		-- Destroy popups if dont_disturb mode is on
-		-- Or if the right_panel is visible
+		-- Or if the control_center is visible
 		local focused = awful.screen.focused()
 		if _G.dont_disturb or
-			(focused.right_panel and focused.right_panel.visible) then
+			(focused.control_center and focused.control_center.visible) then
 			naughty.destroy_all_notifications(nil, 1)
 		end
 

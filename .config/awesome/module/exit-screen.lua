@@ -48,7 +48,7 @@ local msg_table = {
 
 local greeter_message = wibox.widget {
 	markup = 'Choose wisely!',
-	font = 'Inter UltraLight 48',
+	font = 'Roboto Light 48',
 	align = 'center',
 	valign = 'center',
 	widget = wibox.widget.textbox
@@ -56,7 +56,7 @@ local greeter_message = wibox.widget {
 
 local profile_name = wibox.widget {
 	markup = 'user@hostname',
-	font = 'Inter Bold 12',
+	font = 'Roboto Bold 12',
 	align = 'center',
 	valign = 'center',
 	widget = wibox.widget.textbox
@@ -120,7 +120,7 @@ update_greeter_msg()
 local build_power_button = function(name, icon, callback)
 	local power_button_label= wibox.widget {
 		text = name,
-		font = 'Inter Regular 10',
+		font = 'Roboto Regular 10',
 		align = 'center',
 		valign = 'center',
 		widget = wibox.widget.textbox
@@ -177,7 +177,7 @@ end
 
 local lock_command = function()
 	awesome.emit_signal('module::exit_screen:hide')
-	awful.spawn.with_shell(apps.default.lock)
+	awful.spawn(apps.default.lock, false)
 end
 
 local poweroff_command = function()

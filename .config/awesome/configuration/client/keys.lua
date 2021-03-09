@@ -10,7 +10,7 @@ local client_keys = awful.util.table.join(
 	-- Toggle fullscreen
 	awful.key(
 		{modkey},
-		'space',
+		'Escape',
 		function(c)
 			c.fullscreen = not c.fullscreen
 			c:raise()
@@ -174,7 +174,7 @@ local client_keys = awful.util.table.join(
 		function(c)
 			c:relative_move(0, dpi(-10), 0, 0)
 		end,
-		{description = 'move floating client up by 10 px', group = 'client'}
+		{description = 'move floating client', group = 'client'}
 	),
 	awful.key(
 		{modkey},
@@ -182,7 +182,7 @@ local client_keys = awful.util.table.join(
 		function(c)
 			c:relative_move(0, dpi(10), 0, 0)
 		end,
-		{description = 'move floating client down by 10 px', group = 'client'}
+		{description = 'move floating client', group = 'client'}
 	),
 	awful.key(
 		{modkey},
@@ -190,7 +190,7 @@ local client_keys = awful.util.table.join(
 		function(c)
 			c:relative_move(dpi(-10), 0, 0, 0)
 		end,
-		{description = 'move floating client to the left by 10 px', group = 'client'}
+		{description = 'move floating client', group = 'client'}
 	),
 	awful.key(
 		{modkey},
@@ -198,7 +198,7 @@ local client_keys = awful.util.table.join(
 		function(c)
 			c:relative_move(dpi(10), 0, 0, 0)
 		end,
-		{description = 'move floating client to the right by 10 px', group = 'client'}
+		{description = 'move floating client', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Shift'},
@@ -206,7 +206,7 @@ local client_keys = awful.util.table.join(
 		function(c)
 			c:relative_move(0, dpi(-10), 0, dpi(10))
 		end,
-		{description = 'increase floating client size vertically by 10 px up', group = 'client'}
+		{description = 'increase floating client size', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Shift'},
@@ -214,7 +214,7 @@ local client_keys = awful.util.table.join(
 		function(c)
 			c:relative_move(0, 0, 0, dpi(10))
 		end,
-		{description = 'increase floating client size vertically by 10 px down', group = 'client'}
+		{description = 'increase floating client size', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Shift'},
@@ -222,7 +222,7 @@ local client_keys = awful.util.table.join(
 		function(c)
 			c:relative_move(dpi(-10), 0, dpi(10), 0)
 		end,
-		{description = 'increase floating client size horizontally by 10 px left', group = 'client'}
+		{description = 'increase floating client size', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Shift'},
@@ -230,7 +230,7 @@ local client_keys = awful.util.table.join(
 		function(c)
 			c:relative_move(0, 0, dpi(10), 0)
 		end,
-		{description = 'increase floating client size horizontally by 10 px right', group = 'client'}
+		{description = 'increase floating client size', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Control'},
@@ -240,7 +240,7 @@ local client_keys = awful.util.table.join(
 				c:relative_move(0, 0, 0, dpi(-10))
 			end
 		end,
-		{description = 'decrease floating client size vertically by 10 px up', group = 'client'}
+		{description = 'decrease floating client size', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Control'},
@@ -252,7 +252,7 @@ local client_keys = awful.util.table.join(
 				c:relative_move(0, dpi(10), 0, 0)
 			end
 		end,
-		{description = 'decrease floating client size vertically by 10 px down', group = 'client'}
+		{description = 'decrease floating client size', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Control'},
@@ -262,7 +262,7 @@ local client_keys = awful.util.table.join(
 				c:relative_move(0, 0, dpi(-10), 0)
 			end
 		end,
-		{description = 'decrease floating client size horizontally by 10 px left', group = 'client'}
+		{description = 'decrease floating client size', group = 'client'}
 	),
 	awful.key(
 		{modkey, 'Control'},
@@ -274,7 +274,7 @@ local client_keys = awful.util.table.join(
 				c:relative_move(dpi(10), 0 , 0, 0)
 			end
 		end,
-		{description = 'decrease floating client size horizontally by 10 px right', group = 'client'}
+		{description = 'decrease floating client size', group = 'client'}
 	)
 )
 

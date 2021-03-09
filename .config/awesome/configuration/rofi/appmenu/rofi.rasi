@@ -36,7 +36,7 @@ prompt {
 
 button {
 	action: "ok";
-	str: " ";
+	str: "";
 	font: "FiraCode Nerd Font 11";
 	expand: false;
 	text-color: @foreground;
@@ -73,14 +73,14 @@ entry-wrapper {
 }
 
 inputbar {
-	background-color: @background-white;
-	text-color: @foreground;
-	expand: false;
-	border-radius: 6px;
-	margin: 0px calc((100% - 640px) / 2) 0px calc((100% - 640px) / 2);
-	padding: 10px 10px 10px 10px;
-	position: north;
-	children: [ entry-wrapper ];
+    padding: 14px;
+    margin: 10px 10px 14px 10px;
+    background-color: @background-white;
+    text-color: @foreground;
+    expand: false;
+    border-radius: 9px;
+    position: north;
+    children: [ entry-wrapper ];
 }
 
 listview {

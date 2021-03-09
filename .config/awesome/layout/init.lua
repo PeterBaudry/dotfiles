@@ -1,7 +1,7 @@
 local awful = require('awful')
 local left_panel = require('layout.left-panel')
 local top_panel = require('layout.top-panel')
-local right_panel = require('layout.right-panel')
+local control_center = require('layout.control-center')
 
 -- Create a wibox panel for each screen and add it
 screen.connect_signal(
@@ -13,8 +13,8 @@ screen.connect_signal(
 		else
 			s.top_panel = top_panel(s, false)
 		end
-		s.right_panel = right_panel(s)
-		s.right_panel_show_again = false
+		s.control_center = control_center(s)
+		s.control_center_show_again = false
 	end
 )
 
@@ -29,13 +29,13 @@ function update_bars_visibility()
 			if s.left_panel then
 				s.left_panel.visible = not fullscreen
 			end
-			if s.right_panel then
-				if fullscreen and s.right_panel.visible then
-					s.right_panel:toggle()
-					s.right_panel_show_again = true
-				elseif not fullscreen and not s.right_panel.visible and s.right_panel_show_again then
-					s.right_panel:toggle()
-					s.right_panel_show_again = false
+			if s.control_center then
+				if fullscreen and s.control_center.visible then
+					s.control_center:toggle()
+					s.control_center_show_again = true
+				elseif not fullscreen and not s.control_center.visible and s.control_center_show_again then
+					s.control_center:toggle()
+					s.control_center_show_again = false
 				end
 			end
 		end
