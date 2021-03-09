@@ -30,6 +30,122 @@ local global_keys = awful.util.table.join(
 		{description = 'quit awesome', group = 'awesome'}
 	),
 
+	-- Launcher
+	awful.key(
+		{modkey},
+		'd',
+		function()
+			local s = awful.screen.focused()
+			awful.spawn(
+				s.selected_tag.default_app,
+				{
+					tag = s.selected_tag
+				}
+			)
+		end,
+		{description = 'open default app', group = 'launcher'}
+	),
+	awful.key(
+		{modkey},
+		'Return',
+		function()
+			awful.spawn(apps.default.terminal)
+		end,
+		{description = 'open default terminal', group = 'launcher'}
+	),
+	awful.key(
+		{modkey},
+		'e',
+		function()
+			awful.spawn(apps.default.file_manager)
+		end,
+		{description = 'open default file manager', group = 'launcher'}
+	),
+	awful.key(
+		{modkey},
+		'b',
+		function()
+			awful.spawn(apps.default.web_browser)
+		end,
+		{description = 'open default web browser', group = 'launcher'}
+	),
+	awful.key(
+		{'Control', 'Shift'},
+		'Escape',
+		function()
+			awful.spawn(apps.default.terminal .. ' -e htop')
+		end,
+		{description = 'open system monitor', group = 'launcher'}
+	),
+
+	-- Menus
+	awful.key(
+		{modkey},
+		'r',
+		function()
+			local focused = awful.screen.focused()
+
+			if focused.central_panel and focused.central_panel.visible then
+				focused.central_panel:hide_dashboard()
+			end
+			if focused.control_center and focused.control_center.visible then
+				focused.control_center:hide_dashboard()
+				focused.control_center.opened = false
+			end
+			awful.spawn(apps.default.rofi_appmenu, false)
+		end,
+		{description = 'open application drawer', group = 'menu'}
+	),
+	awful.key(
+		{modkey},
+		'x',
+		function()
+			local focused = awful.screen.focused()
+			if not focused.exit_screen.visible then
+				if focused.central_panel and focused.central_panel.visible then
+					focused.central_panel:toggle()
+				end
+				if focused.control_center and focused.control_center.visible then
+					focused.control_center:toggle()
+				end
+				awesome.emit_signal('module::exit_screen:show')
+			else
+				awesome.emit_signal('module::exit_screen:hide')
+			end
+		end,
+		{description = 'toggle exit screen', group = 'menu'}
+	),
+	awful.key(
+		{modkey},
+		'a',
+		function()
+			local focused = awful.screen.focused()
+
+			if focused.control_center and focused.control_center.visible then
+				focused.control_center:toggle()
+			end
+			if focused.central_panel then
+				focused.central_panel:toggle()
+			end
+		end,
+		{description = 'toggle notifications panel', group = 'menu'}
+	),
+	awful.key(
+		{modkey},
+		'o',
+		function()
+			local focused = awful.screen.focused()
+
+			if focused.central_panel and focused.central_panel.visible then
+				focused.central_panel:toggle()
+			end
+			if focused.control_center then
+				focused.control_center:toggle()
+			end
+		end,
+		{description = 'toggle options panel', group = 'menu'}
+	),
+
 	-- Layout
 	awful.key(
 		{modkey},
@@ -76,20 +192,6 @@ local global_keys = awful.util.table.join(
 		'j',
 		awful.tag.viewnext,
 		{description = 'view next tag', group = 'tag'}
-	),
-	awful.key(
-		{modkey},
-		'a',
-		function()
-			local s = awful.screen.focused()
-			awful.spawn(
-				s.selected_tag.default_app,
-				{
-					tag = s.selected_tag
-				}
-			)
-		end,
-		{description = 'open default app', group = 'tag'}
 	),
 
 	-- Screens
@@ -246,14 +348,6 @@ local global_keys = awful.util.table.join(
 		end,
 		{description = 'arandr', group = 'hotkeys'}
 	),
-	awful.key(
-		{modkey, 'Shift'},
-		'q',
-		function()
-			awesome.emit_signal('module::exit_screen:show')
-		end,
-		{description = 'toggle exit screen', group = 'hotkeys'}
-	),
 
 
 	awful.key(
@@ -270,154 +364,6 @@ local global_keys = awful.util.table.join(
 			end
 		end,
 		{description = 'toggle systray visibility', group = 'Utility'}
-	),
-	awful.key(
-		{modkey},
-		'x',
-		function()
-			awful.spawn(apps.default.lock, false)
-		end,
-		{description = 'lock the screen', group = 'Utility'}
-	),
-	awful.key(
-		{modkey},
-		'Return',
-		function()
-			awful.spawn(apps.default.terminal)
-		end,
-		{description = 'open default terminal', group = 'launcher'}
-	),
-	awful.key(
-		{modkey},
-		'e',
-		function()
-			awful.spawn(apps.default.file_manager)
-		end,
-		{description = 'open default file manager', group = 'launcher'}
-	),
-	awful.key(
-		{modkey},
-		'b',
-		function()
-			awful.spawn(apps.default.web_browser)
-		end,
-		{description = 'open default web browser', group = 'launcher'}
-	),
-	awful.key(
-		{'Control', 'Shift'},
-		'Escape',
-		function()
-			awful.spawn(apps.default.terminal .. ' -e htop')
-		end,
-		{description = 'open system monitor', group = 'launcher'}
-	),
-	awful.key(
-		{modkey},
-		's',
-		function()
-			local focused = awful.screen.focused()
-
-			if focused.left_panel then
-				focused.left_panel:hide_dashboard()
-				focused.left_panel.opened = false
-			end
-			if focused.control_center then
-				focused.control_center:hide_dashboard()
-				focused.control_center.opened = false
-			end
-			awful.spawn(apps.default.rofi_appmenu, false)
-		end,
-		{description = 'open application drawer', group = 'launcher'}
-	),
-	awful.key(
-		{},
-		'XF86Launch1',
-		function()
-			local focused = awful.screen.focused()
-
-			if focused.left_panel then
-				focused.left_panel:hide_dashboard()
-				focused.left_panel.opened = false
-			end
-			if focused.control_center then
-				focused.control_center:hide_dashboard()
-				focused.control_center.opened = false
-			end
-			awful.spawn(apps.default.rofi_appmenu, false)
-		end,
-		{description = 'open application drawer', group = 'launcher'}
-	),
-	awful.key(
-		{modkey},
-		'r',
-		function()
-			local focused = awful.screen.focused()
-
-			if focused.control_center and focused.control_center.visible then
-				focused.control_center.visible = false
-			end
-			screen.primary.left_panel:toggle()
-		end,
-		{description = 'open sidebar', group = 'launcher'}
-	),
-	awful.key(
-		{modkey, 'Shift'},
-		'r',
-		function()
-			local focused = awful.screen.focused()
-
-			if focused.control_center and focused.control_center.visible then
-				focused.control_center.visible = false
-			end
-			screen.primary.left_panel:toggle(true)
-		end,
-		{description = 'open sidebar and global search', group = 'launcher'}
-	),
-	awful.key(
-		{modkey},
-		'F2',
-		function()
-			local focused = awful.screen.focused()
-
-			if focused.left_panel and focused.left_panel.opened then
-				focused.left_panel:toggle()
-			end
-
-			if focused.control_center then
-				if _G.control_center_mode == 'today_mode' or not focused.control_center.visible then
-					focused.control_center:toggle()
-					switch_rdb_pane('today_mode')
-				else
-					switch_rdb_pane('today_mode')
-				end
-
-				_G.control_center_mode = 'today_mode'
-			end
-		end,
-		{description = 'open today pane', group = 'launcher'}
-	),
-	awful.key(
-		{modkey},
-		'F3',
-		function()
-			local focused = awful.screen.focused()
-
-			if focused.left_panel and focused.left_panel.opened then
-				focused.left_panel:toggle()
-			end
-
-			if focused.control_center then
-				if _G.control_center_mode == 'notif_mode' or not focused.control_center.visible then
-					focused.control_center:toggle()
-					switch_rdb_pane('notif_mode')
-				else
-					switch_rdb_pane('notif_mode')
-				end
-
-				_G.control_center_mode = 'notif_mode'
-			end
-		end,
-		{description = 'open notification center', group = 'launcher'}
 	)
 )
 

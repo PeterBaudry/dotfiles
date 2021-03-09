@@ -32,16 +32,10 @@ return {
 		package_manager = 'pamac-manager',
 		-- Default locker
 		lock = 'light-locker-command -l',
-		-- Default rofi global menu
-		rofi_global = 'rofi -dpi ' .. screen.primary.dpi .. 
-							' -show "Global Search" -modi "Global Search":' .. config_dir .. 
-							'/configuration/rofi/global/rofi-spotlight.sh' .. 
-							' -theme ' .. config_dir ..
-							'/configuration/rofi/global/rofi.rasi',
 		-- Default app menu
 		rofi_appmenu = 'rofi -dpi ' .. screen.primary.dpi ..
 							' -show drun -theme ' .. config_dir ..
-							'/configuration/rofi/appmenu/rofi.rasi'
+							'/configuration/rofi/rofi.rasi'
 
 		-- You can add more default applications here
 	},

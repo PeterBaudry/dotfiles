@@ -1,6 +1,7 @@
 local awful = require('awful')
 local left_panel = require('layout.left-panel')
 local top_panel = require('layout.top-panel')
+local central_panel =  require('layout.central-panel')
 local control_center = require('layout.control-center')
 
 -- Create a wibox panel for each screen and add it
@@ -13,6 +14,7 @@ screen.connect_signal(
 		else
 			s.top_panel = top_panel(s, false)
 		end
+		s.central_panel = central_panel(s)
 		s.control_center = control_center(s)
 		s.control_center_show_again = false
 	end

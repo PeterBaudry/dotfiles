@@ -13,14 +13,14 @@ local blur_status = true
 
 local action_name = wibox.widget {
 	text = 'Blur Effects' ,
-	font = 'Inter Bold 10',
+	font = 'Roboto Bold 10',
 	align = 'left',
 	widget = wibox.widget.textbox
 }
 
 local action_status = wibox.widget {
 	text = 'Off',
-	font = 'Inter Regular 10',
+	font = 'Roboto Regular 10',
 	align = 'left',
 	widget = wibox.widget.textbox
 }

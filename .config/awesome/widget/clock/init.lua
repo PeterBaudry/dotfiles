@@ -11,9 +11,9 @@ local create_clock = function(s)
 
 	local clock_format = nil
 	if not military_mode then
-		clock_format = '<span font="Inter Bold 11">%I:%M %p</span>'
+		clock_format = '<span font="Roboto Bold 11">%I:%M %p</span>'
 	else
-		clock_format = '<span font="Inter Bold 11">%H:%M</span>'
+		clock_format = '<span font="Roboto Bold 11">%H:%M</span>'
 	end
 
 	s.clock_widget = wibox.widget.textclock(
@@ -102,54 +102,17 @@ local create_clock = function(s)
 		end
 	)
 	
-	s.month_calendar      = awful.widget.calendar_popup.month({
-		start_sunday      = true,
-		spacing           = dpi(5),
-		font              = 'Inter Regular 10',
-		long_weekdays     = true,
-		margin            = dpi(5),
-		screen            = s,
-		style_month       = {
-			border_width    = dpi(0),
-			bg_color 		= beautiful.background,
-			padding         = dpi(20),
-			shape           = function(cr, width, height)
-				gears.shape.partially_rounded_rect(
-					cr, width, height, true, true, true, true, beautiful.groups_radius
-				)
-			end
-		},
-		style_header      = { 
-			border_width    = 0, 
-			bg_color        = beautiful.transparent
-		},
-		style_weekday     = { 
-			border_width    = 0, 
-			bg_color        = beautiful.transparent
-		},
-		style_normal      = { 
-			border_width    = 0, 
-			bg_color        = beautiful.transparent
-		},
-		style_focus       = { 
-			border_width    = dpi(0), 
-			border_color    = beautiful.fg_normal, 
-			bg_color        = beautiful.accent, 
-			shape           = function(cr, width, height)
-				gears.shape.partially_rounded_rect(
-					cr, width, height, true, true, true, true, dpi(4)
-				)
-			end,
-		},
-	})
-
-	s.month_calendar:attach(
-		s.clock_widget, 
-		'tc', 
-		{ 
-			on_pressed = true,
-			on_hover = false 
-		}
+	s.clock_widget:buttons(
+		gears.table.join(
+			awful.button(
+				{},
+				1,
+				nil,
+				function()
+					awful.screen.focused().central_panel:toggle()
+				end
+			)
+		)
 	)
 
 	return s.clock_widget
