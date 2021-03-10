@@ -33,9 +33,10 @@ notifbox_box = function(notif, icon, title, message, app, bgcolor)
 		id = 'time_pop',
 		markup = nil,
 		font = 'Roboto Regular 10',
-		align = 'left',
+		align = 'right',
 		valign = 'center',
 		visible = true,
+		forced_width = dpi(200),
 		widget = wibox.widget.textbox
 	}
 
@@ -152,7 +153,7 @@ notifbox_box = function(notif, icon, title, message, app, bgcolor)
 	-- Add hover, and mouse leave events
 	notifbox_template:connect_signal(
 		'mouse::enter',
-		function() 
+		function()
 			notifbox.bg = beautiful.groups_bg
 			notifbox_timepop.visible = false
 			notifbox_dismiss.visible = true
@@ -161,7 +162,7 @@ notifbox_box = function(notif, icon, title, message, app, bgcolor)
 
 	notifbox_template:connect_signal(
 		'mouse::leave',
-		function() 
+		function()
 			notifbox.bg = beautiful.tranparent
 			notifbox_timepop.visible = true
 			notifbox_dismiss.visible = false

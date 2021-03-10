@@ -60,6 +60,8 @@ return {
 		'pulseeffects --gapplication-service',
 		-- Start locker service
 		'light-locker --lock-on-suspend --lock-on-lid',
+		-- Start libinput-gestures
+		'libinput-gestures-setup start',
 
 		-- Personal startup script
 		'/home/pbaudry/.src/scripts/startup.sh',

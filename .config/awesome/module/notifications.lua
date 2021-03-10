@@ -15,7 +15,7 @@ naughty.config.defaults.timeout = 5
 naughty.config.defaults.title = 'System Notification'
 naughty.config.defaults.margin = dpi(16)
 naughty.config.defaults.border_width = 0
-naughty.config.defaults.position = 'top'
+naughty.config.defaults.position = 'top_middle'
 naughty.config.defaults.shape = function(cr, w, h)
 	gears.shape.rounded_rect(cr, w, h, dpi(6))
 end
@@ -49,7 +49,7 @@ ruled.notification.connect_signal(
 				bg 					= '#ff0000', 
 				fg 					= '#ffffff',
 				margin 				= dpi(16),
-				position 			= 'top',
+				position 			= 'top_middle',
 				implicit_timeout	= 0
 			}
 		}
@@ -62,8 +62,8 @@ ruled.notification.connect_signal(
 				bg      			= beautiful.transparent, 
 				fg 					= beautiful.fg_normal,
 				margin 				= dpi(16),
-				position 			= 'top',
-				implicit_timeout 	= 5
+				position 			= 'top_middle',
+				implicit_timeout 	= 3
 			}
 		}
 
@@ -75,8 +75,8 @@ ruled.notification.connect_signal(
 				bg     				= beautiful.transparent,
 				fg 					= beautiful.fg_normal,
 				margin 				= dpi(16),
-				position 			= 'top',
-				implicit_timeout	= 5
+				position 			= 'top_middle',
+				implicit_timeout	= 3
 			}
 		}
 	end
@@ -246,10 +246,10 @@ naughty.connect_signal(
 		}
 	
 		-- Destroy popups if dont_disturb mode is on
-		-- Or if the control_center is visible
+		-- Or if the central_panel is visible
 		local focused = awful.screen.focused()
 		if _G.dont_disturb or
-			(focused.control_center and focused.control_center.visible) then
+			(focused.central_panel and focused.central_panel.visible) then
 			naughty.destroy_all_notifications(nil, 1)
 		end
 
