@@ -11,11 +11,11 @@ local clickable_container = require('widget.clickable-container')
 -- Defaults
 naughty.config.defaults.ontop = true
 naughty.config.defaults.icon_size = dpi(32)
-naughty.config.defaults.timeout = 5
+naughty.config.defaults.timeout = 3
 naughty.config.defaults.title = 'System Notification'
 naughty.config.defaults.margin = dpi(16)
 naughty.config.defaults.border_width = 0
-naughty.config.defaults.position = 'top_middle'
+naughty.config.defaults.position = 'bottom_right'
 naughty.config.defaults.shape = function(cr, w, h)
 	gears.shape.rounded_rect(cr, w, h, dpi(6))
 end
@@ -46,10 +46,9 @@ ruled.notification.connect_signal(
 			rule       = { urgency = 'critical' },
 			properties = { 
 				font        		= 'Roboto Bold 10',
-				bg 					= '#ff0000', 
+				bg 					= '#ff0000',
 				fg 					= '#ffffff',
 				margin 				= dpi(16),
-				position 			= 'top_middle',
 				implicit_timeout	= 0
 			}
 		}
@@ -59,10 +58,9 @@ ruled.notification.connect_signal(
 			rule       = { urgency = 'normal' },
 			properties = {
 				font        		= 'Roboto Regular 10',
-				bg      			= beautiful.transparent, 
+				bg      			= beautiful.transparent,
 				fg 					= beautiful.fg_normal,
 				margin 				= dpi(16),
-				position 			= 'top_middle',
 				implicit_timeout 	= 3
 			}
 		}
@@ -75,7 +73,6 @@ ruled.notification.connect_signal(
 				bg     				= beautiful.transparent,
 				fg 					= beautiful.fg_normal,
 				margin 				= dpi(16),
-				position 			= 'top_middle',
 				implicit_timeout	= 3
 			}
 		}
