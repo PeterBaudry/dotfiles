@@ -91,7 +91,7 @@ local weather_desc_temp = wibox.widget {
 	{
 		id 	   = 'description',
 		markup = 'Dust and clouds, -1000°C',
-		font   = 'Roboto Regular 10',
+		font   = 'Inter Regular 10',
 		align  = 'left',
 		valign = 'center',
 		widget = wibox.widget.textbox
@@ -111,7 +111,7 @@ local weather_location = wibox.widget {
 	{
 		id 	   = 'location',
 		markup = 'Earth, Milky Way',
-		font   = 'Roboto Regular 10',
+		font   = 'Inter Regular 10',
 		align  = 'left',
 		valign = 'center',
 		widget = wibox.widget.textbox
@@ -129,7 +129,7 @@ local weather_location = wibox.widget {
 
 local weather_sunrise = wibox.widget {
 	markup = '00:00',
-	font   = 'Roboto Regular 10',
+	font   = 'Inter Regular 10',
 	align  = 'center',
 	valign = 'center',
 	widget = wibox.widget.textbox
@@ -137,7 +137,7 @@ local weather_sunrise = wibox.widget {
 
 local weather_sunset = wibox.widget {
 	markup = '00:00',
-	font   = 'Roboto Regular 10',
+	font   = 'Inter Regular 10',
 	align  = 'center',
 	valign = 'center',
 	widget = wibox.widget.textbox
@@ -145,7 +145,7 @@ local weather_sunset = wibox.widget {
 
 local weather_data_time = wibox.widget {
 	markup = '00:00',
-	font   = 'Roboto Regular 10',
+	font   = 'Inter Regular 10',
 	align  = 'center',
 	valign = 'center',
 	widget = wibox.widget.textbox
@@ -224,6 +224,7 @@ local get_weather_symbol = function()
 		['metric'] = '°C',
 		['imperial'] = '°F'
 	}
+
 	return symbol_tbl[secrets.units]
 end
 
@@ -392,6 +393,7 @@ awesome.connect_signal(
 		weather_sunrise:set_markup(sunrise)
 		weather_sunset:set_markup(sunset)
 		weather_data_time:set_markup(data_receive)
+
 	end
 )
 

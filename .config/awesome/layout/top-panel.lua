@@ -48,6 +48,7 @@ local top_panel = function(s, offset)
 		base_size = dpi(20),
 		horizontal = true,
 		screen = 'primary',
+		opacity = 0,
 		widget = wibox.widget.systray
 	}
 

@@ -86,11 +86,10 @@ local global_keys = awful.util.table.join(
 			local focused = awful.screen.focused()
 
 			if focused.central_panel and focused.central_panel.visible then
-				focused.central_panel:hide_dashboard()
+				focused.central_panel:toggle()
 			end
 			if focused.control_center and focused.control_center.visible then
-				focused.control_center:hide_dashboard()
-				focused.control_center.opened = false
+				focused.control_center:toggle()
 			end
 			awful.spawn(apps.default.rofi_appmenu, false)
 		end,
