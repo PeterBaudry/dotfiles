@@ -36,7 +36,7 @@ notifbox_box = function(notif, icon, title, message, app, bgcolor)
 		align = 'right',
 		valign = 'center',
 		visible = true,
-		forced_width = dpi(200),
+		forced_width = dpi(300),
 		widget = wibox.widget.textbox
 	}
 
