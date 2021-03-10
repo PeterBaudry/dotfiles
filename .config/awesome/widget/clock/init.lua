@@ -30,27 +30,6 @@ local create_clock = function(s)
 		widget = clickable_container
 	}
 
-	s.clock_widget:connect_signal(
-		'mouse::enter',
-		function()
-			local w = mouse.current_wibox
-			if w then
-				old_cursor, old_wibox = w.cursor, w
-				w.cursor = 'hand1'
-			end
-		end
-	)
-
-	s.clock_widget:connect_signal(
-		'mouse::leave',
-		function()
-			if old_wibox then
-				old_wibox.cursor = old_cursor
-				old_wibox = nil
-			end
-		end
-	)
-
 	s.clock_tooltip = awful.tooltip
 	{
 		objects = {s.clock_widget},

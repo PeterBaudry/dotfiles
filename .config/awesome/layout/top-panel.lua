@@ -33,16 +33,6 @@ local top_panel = function(s, offset)
 		top = dpi(28)
 	}
 
-	panel:connect_signal(
-		'mouse::enter',
-		function() 
-			local w = mouse.current_wibox
-			if w then
-				w.cursor = 'hand1'
-			end
-		end
-	)
-
 	s.systray = wibox.widget {
 		visible = false,
 		base_size = dpi(20),
