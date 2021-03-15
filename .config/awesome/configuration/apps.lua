@@ -27,7 +27,7 @@ return {
 		-- Default bluetooth manager
 		bluetooth_manager = 'blueman-manager',
 		-- Default power manager
-		power_manager = 'xfce4-power-manager',
+		power_manager = 'xfce4-power-manager-settings',
 		-- Default GUI package manager
 		package_manager = 'alacritty -e paru',
 		-- Default locker
