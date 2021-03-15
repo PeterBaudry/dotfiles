@@ -52,6 +52,7 @@ local top_panel = function(s)
 	s.tray_toggler  		= require('widget.tray-toggle')
 	s.updater 				= require('widget.package-updater')()
 	s.battery     			= require('widget.battery')()
+	s.search_apps			= require('widget.search-apps')()
 	s.control_center_toggle = require('widget.control-center-toggle')()
 
 	panel : setup {
@@ -76,6 +77,7 @@ local top_panel = function(s)
 			s.tray_toggler,
 			s.updater,
 			s.battery,
+			s.search_apps,
 			layout_box,
 			s.control_center_toggle,
 		}
