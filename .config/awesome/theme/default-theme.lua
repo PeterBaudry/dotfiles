@@ -189,7 +189,7 @@ local awesome_overrides = function(theme)
 	theme.tasklist_bg_urgent = '#E91E63' .. '99'
 	theme.tasklist_fg_focus = '#DDDDDD'
 	theme.tasklist_fg_urgent = '#ffffff'
-	theme.tasklist_fg_normal = '#AAAAAA'
+	theme.tasklist_fg_normal = '#AAAAAA' .. '99'
 
 	-- Notification
 	theme.notification_position = 'top_right'
