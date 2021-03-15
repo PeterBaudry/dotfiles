@@ -1,3 +1,13 @@
+#   _____  _____ __  ______  ______
+#  /__  / / ___// / / / __ \/ ____/
+#    / /  \__ \/ /_/ / /_/ / /
+#   / /_____/ / __  / _, _/ /___
+#  /____/____/_/ /_/_/ |_|\____/
+
+
+# Display Neofetch
+neofetch --color_blocks off
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.

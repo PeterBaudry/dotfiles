@@ -8,35 +8,35 @@ theme.font = 'Roboto Regular 10'
 theme.font_bold = 'Roboto Bold 10'
 
 -- Colorscheme
-theme.system_black_dark = '#3D4C5F'
-theme.system_black_light = '#56687E'
+theme.system_black_dark = '#1e2127'
+theme.system_black_light = '#5c6370'
 
-theme.system_red_dark = '#EE4F84'
-theme.system_red_light = '#F48FB1'
+theme.system_red_dark = '#e06c75'
+theme.system_red_light = '#e06c75'
 
-theme.system_green_dark = '#53E2AE'
-theme.system_green_light = '#A1EFD3'
+theme.system_green_dark = '#98c379'
+theme.system_green_light = '#98c379'
 
-theme.system_yellow_dark = '#F1FF52'
-theme.system_yellow_light = '#F1FA8C'
+theme.system_yellow_dark = '#d19a66'
+theme.system_yellow_light = '#d19a66'
 
-theme.system_blue_dark = '#6498EF' 
-theme.system_blue_light = '#92B6F4'
+theme.system_blue_dark = '#277FFF'
+theme.system_blue_light = '#367bf0'
 
-theme.system_magenta_dark = '#985EFF'
-theme.system_magenta_light = '#BD99FF'
+theme.system_magenta_dark = '#c678dd'
+theme.system_magenta_light = '#c678dd'
 
-theme.system_cyan_dark = '#24D1E7'
-theme.system_cyan_light = '#87DFEB'
+theme.system_cyan_dark = '#56b6c2'
+theme.system_cyan_light = '#56b6c2'
 
-theme.system_white_dark = '#E5E5E5'
-theme.system_white_light = '#F8F8F2'
+theme.system_white_dark = '#abb2bf'
+theme.system_white_light = '#ffffff'
 
 -- Accent color
 theme.accent = theme.system_blue_dark
 
 -- Background color
-theme.background = '#000000' .. '66'
+theme.background = '#1e2127' .. '66'
 
 -- Transparent
 theme.transparent = '#00000000'

@@ -1,5 +1,4 @@
 local awful = require('awful')
-local left_panel = require('layout.left-panel')
 local top_panel = require('layout.top-panel')
 local central_panel =  require('layout.central-panel')
 local control_center = require('layout.control-center')
@@ -8,12 +7,7 @@ local control_center = require('layout.control-center')
 screen.connect_signal(
 	'request::desktop_decoration',
 	function(s)
-		if s.index == 1 then
-			s.left_panel = left_panel(s)
-			s.top_panel = top_panel(s, true)
-		else
-			s.top_panel = top_panel(s, false)
-		end
+		s.top_panel = top_panel(s)
 		s.central_panel = central_panel(s)
 		s.control_center = control_center(s)
 		s.control_center_show_again = false
@@ -28,9 +22,6 @@ function update_bars_visibility()
 			local fullscreen = s.selected_tag.fullscreen_mode
 			-- Order matter here for shadow
 			s.top_panel.visible = not fullscreen
-			if s.left_panel then
-				s.left_panel.visible = not fullscreen
-			end
 			if s.control_center then
 				if fullscreen and s.control_center.visible then
 					s.control_center:toggle()

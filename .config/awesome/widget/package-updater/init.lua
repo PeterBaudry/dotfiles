@@ -47,7 +47,7 @@ local return_button = function()
 				function()
 					
 					if update_available then
-						awful.spawn(apps.default.package_manager .. ' --updates', false)
+						awful.spawn(apps.default.package_manager, false)
 					
 					else
 						awful.spawn(apps.default.package_manager, false)

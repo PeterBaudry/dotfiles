@@ -13,7 +13,7 @@ naughty.config.defaults.ontop = true
 naughty.config.defaults.icon_size = dpi(32)
 naughty.config.defaults.timeout = 3
 naughty.config.defaults.title = 'System Notification'
-naughty.config.defaults.margin = dpi(16)
+naughty.config.defaults.margin = dpi(32)
 naughty.config.defaults.border_width = 0
 naughty.config.defaults.position = 'bottom_right'
 naughty.config.defaults.shape = function(cr, w, h)
@@ -48,7 +48,7 @@ ruled.notification.connect_signal(
 				font        		= 'Roboto Bold 10',
 				bg 					= '#ff0000',
 				fg 					= '#ffffff',
-				margin 				= dpi(16),
+				margin 				= dpi(32),
 				implicit_timeout	= 0
 			}
 		}
@@ -60,7 +60,7 @@ ruled.notification.connect_signal(
 				font        		= 'Roboto Regular 10',
 				bg      			= beautiful.transparent,
 				fg 					= beautiful.fg_normal,
-				margin 				= dpi(16),
+				margin 				= dpi(32),
 				implicit_timeout 	= 3
 			}
 		}
@@ -72,7 +72,7 @@ ruled.notification.connect_signal(
 				font        		= 'Roboto Regular 10',
 				bg     				= beautiful.transparent,
 				fg 					= beautiful.fg_normal,
-				margin 				= dpi(16),
+				margin 				= dpi(32),
 				implicit_timeout	= 3
 			}
 		}

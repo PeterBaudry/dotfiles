@@ -29,7 +29,7 @@ return {
 		-- Default power manager
 		power_manager = 'xfce4-power-manager',
 		-- Default GUI package manager
-		package_manager = 'pamac-manager',
+		package_manager = 'alacritty -e paru',
 		-- Default locker
 		lock = 'light-locker-command -l',
 		-- Default app menu

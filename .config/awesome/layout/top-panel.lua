@@ -5,23 +5,27 @@ local gears = require('gears')
 local icons = require('theme.icons')
 local dpi = beautiful.xresources.apply_dpi
 local clickable_container = require('widget.clickable-container')
+local tag_list = require('widget.tag-list')
 local task_list = require('widget.task-list')
 
-local top_panel = function(s, offset)
+local top_panel = function(s)
 
-	local offsetx = 0
-	if offset == true then
-		offsetx = dpi(45)
-	end
+	local separator =  wibox.widget {
+		orientation = 'vertical',
+		forced_height = dpi(1),
+		forced_width = dpi(1),
+		span_ratio = 0.55,
+		widget = wibox.widget.separator
+	}
 
 	local panel = wibox
 	{
 		ontop = true,
 		screen = s,
 		type = 'dock',
-		height = dpi(28),
-		width = s.geometry.width - offsetx,
-		x = s.geometry.x + offsetx,
+		height = dpi(30),
+		width = s.geometry.width,
+		x = s.geometry.x,
 		y = s.geometry.y,
 		stretch = false,
 		bg = beautiful.background,
@@ -30,7 +34,7 @@ local top_panel = function(s, offset)
 
 	panel:struts
 	{
-		top = dpi(28)
+		top = dpi(30)
 	}
 
 	s.systray = wibox.widget {
@@ -55,6 +59,8 @@ local top_panel = function(s, offset)
 		expand = 'none',
 		{
 			layout = wibox.layout.fixed.horizontal,
+			tag_list(s),
+			separator,
 			task_list(s),
 			add_button
 		}, 

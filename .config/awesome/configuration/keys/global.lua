@@ -250,7 +250,7 @@ local global_keys = awful.util.table.join(
 		{},
 		'XF86MonBrightnessDown',
 		function()
-			awful.spawn('light -U 10', false)
+			awful.spawn('light -U 5', false)
 			awesome.emit_signal('widget::brightness')
 			awesome.emit_signal('module::brightness_osd:show', true)
 		end,
@@ -260,7 +260,7 @@ local global_keys = awful.util.table.join(
 		{},
 		'XF86MonBrightnessUp',
 		function()
-			awful.spawn('light -A 10', false)
+			awful.spawn('light -A 5', false)
 			awesome.emit_signal('widget::brightness')
 			awesome.emit_signal('module::brightness_osd:show', true)
 		end,
