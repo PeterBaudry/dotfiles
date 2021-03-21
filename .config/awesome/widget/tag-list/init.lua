@@ -125,16 +125,16 @@ local tag_list = function(s)
 					t:view_only()
 				end
 			),
-			awful.button({}, 3, awful.tag.viewtoggle),
 			awful.button(
-				{modkey},
-				3,
+				{},
+				2,
 				function(t)
-					if _G.client.focus then
-						_G.client.focus:toggle_tag(t)
+					for _, c in pairs(t:clients()) do
+						c:kill();
 					end
 				end
 			),
+			awful.button({}, 3, awful.tag.viewtoggle),
 			awful.button(
 				{},
 				4,
