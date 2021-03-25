@@ -1,0 +1,33 @@
+return {
+	widget = {
+		weather = {
+			-- API Key
+			key = '',
+			-- City ID
+			city_id = '',
+			-- Units
+			units = 'metric',
+			-- Update in N seconds
+			update_interval = 1200
+		},
+		
+		clock = {
+			-- Clock widget format
+			military_mode = true
+		},
+
+		network = {
+			-- Wired interface
+			wired_interface = 'enp7s0',
+			-- Wireless interface
+			wireless_interface = 'wlp0s20f3'
+		},
+	},
+
+	module = {
+		auto_start = {
+			-- Will create notification if true
+			debug_mode = false
+		},
+	}
+}
