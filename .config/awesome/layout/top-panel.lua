@@ -51,6 +51,9 @@ local top_panel = function(s)
 	local add_button 		= require('widget.open-default-app')(s)
 	s.tray_toggler  		= require('widget.tray-toggle')
 	s.updater 				= require('widget.package-updater')()
+	s.volume   				= require('widget.volume')()
+	s.bluetooth   			= require('widget.bluetooth')()
+	s.network       		= require('widget.network')()
 	s.battery     			= require('widget.battery')()
 	s.search_apps			= require('widget.search-apps')()
 	s.control_center_toggle = require('widget.control-center-toggle')()
@@ -76,6 +79,9 @@ local top_panel = function(s)
 			},
 			s.tray_toggler,
 			s.updater,
+			s.volume,
+			s.bluetooth,
+			s.network,
 			s.battery,
 			s.search_apps,
 			layout_box,

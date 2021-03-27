@@ -19,13 +19,17 @@ return {
 		-- Default game, can be a launcher like steam
 		game = 'shadow-preprod',
 		-- Default graphics editor
-		graphics = 'gimp-2.10',
+		graphics = 'gimp',
 		-- Default sandbox
-		sandbox = 'virtualbox',
+		sandbox = 'virt-manager',
 		-- Default IDE
 		development = 'code',
+		-- Default network manager
+		network_manager = 'gnome-control-center wifi',
 		-- Default bluetooth manager
 		bluetooth_manager = 'blueman-manager',
+		-- Default volume manager
+		volume_manager = 'pavucontrol',
 		-- Default power manager
 		power_manager = 'xfce4-power-manager-settings',
 		-- Default GUI package manager
@@ -45,12 +49,6 @@ return {
 		-- Compositor
 		'picom -b --experimental-backends --dbus --config ' ..
 		config_dir .. '/configuration/picom.conf',
-		-- Network manager applet
-		'nm-applet',
-		-- Blueman applet
-		'blueman-applet',
-		-- Pulseaudio applet
-		'pasystray',
 		-- Polkit and keyring
 		'/usr/bin/lxqt-policykit-agent &'..
 		' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
@@ -64,6 +62,8 @@ return {
 		'light-locker --lock-on-suspend --lock-on-lid',
 		-- Start libinput-gestures
 		'libinput-gestures-setup start',
+		-- Start Solaar for keyboard & mouse management
+		'solaar -w hide',
 
 		-- Personal startup script
 		'/home/pbaudry/.src/scripts/startup.sh',

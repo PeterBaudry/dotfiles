@@ -49,7 +49,7 @@ ruled.notification.connect_signal(
 				bg 					= '#ff0000',
 				fg 					= '#ffffff',
 				margin 				= dpi(32),
-				implicit_timeout	= 0
+				implicit_timeout	= 10
 			}
 		}
 

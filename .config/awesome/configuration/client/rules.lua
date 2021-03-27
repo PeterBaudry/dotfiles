@@ -214,8 +214,7 @@ ruled.client.connect_signal(
 			rule_any = {
 				instance    = {
 					'file_progress',
-					'Popup',
-					'nm-connection-editor',
+					'Popup'
 				},
 				class = {
 					'scrcpy',
