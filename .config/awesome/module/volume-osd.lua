@@ -4,8 +4,9 @@ local wibox = require('wibox')
 local beautiful = require('beautiful')
 local dpi = beautiful.xresources.apply_dpi
 local clickable_container = require('widget.clickable-container')
-local icons = require('theme.icons')
 local spawn = require('awful.spawn')
+
+local icons = require('theme.icons')
 
 local osd_header = wibox.widget {
 	text = 'Volume',
@@ -91,7 +92,8 @@ awesome.connect_signal(
 
 local icon = wibox.widget {
 	{
-		image = icons.volume,
+		id = 'icon_image',
+		image = icons.volume_high,
 		resize = true,
 		widget = wibox.widget.imagebox
 	},
@@ -191,6 +193,24 @@ local hide_osd = gears.timer {
 awesome.connect_signal(
 	'module::volume_osd:rerun',
 	function()
+		awful.spawn.easy_async_with_shell(
+			"amixer -D pulse sget Master",
+			function(stdout)
+				local icon_name = icons.volume_mute
+				if not stdout:match('off') then
+					local volume = tonumber(string.match(stdout, '(%d?%d?%d)%%'))
+					if volume == 0 then
+						icon_name = icons.volume_off
+					elseif volume < 50 then
+						icon_name = icons.volume_low
+					else
+						icon_name = icons.volume_high
+					end
+				end
+				icon.icon_image:set_image(icon_name)
+				collectgarbage('collect')
+			end
+		)
 		if hide_osd.started then
 			hide_osd:again()
 		else

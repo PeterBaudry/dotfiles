@@ -19,7 +19,7 @@ local icon = wibox.widget {
 	expand = 'none',
 	nil,
 	{
-		image = icons.volume,
+		image = icons.volume_high,
 		resize = true,
 		widget = wibox.widget.imagebox
 	},
