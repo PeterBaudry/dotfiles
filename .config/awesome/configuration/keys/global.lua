@@ -19,6 +19,21 @@ local global_keys = awful.util.table.join(
 		hotkeys_popup.show_help,
 		{description = 'show help', group = 'awesome'}
 	),
+	awful.key(
+		{ 'Control' },
+		'Escape',
+		function ()
+			if screen.primary.systray then
+				if not screen.primary.tray_toggler then
+					local systray = screen.primary.systray
+					systray.visible = not systray.visible
+				else
+					awesome.emit_signal('widget::systray:toggle')
+				end
+			end
+		end,
+		{description = 'toggle systray visibility', group = 'awesome'}
+	),
 	awful.key({modkey, 'Control'},
 		'r',
 		awesome.restart,
@@ -184,13 +199,13 @@ local global_keys = awful.util.table.join(
 		{modkey},
 		'k',
 		awful.tag.viewprev,
-		{description = 'view previous tag', group = 'tag'}
+		{description = 'view previous/next tag', group = 'tag'}
 	),
 	awful.key(
 		{modkey},
 		'j',
 		awful.tag.viewnext,
-		{description = 'view next tag', group = 'tag'}
+		{description = 'view previous/next tag', group = 'tag'}
 	),
 
 	-- Screens
@@ -254,7 +269,7 @@ local global_keys = awful.util.table.join(
 			awesome.emit_signal('widget::brightness')
 			awesome.emit_signal('module::brightness_osd:show', true)
 		end,
-		{description = 'decrease/increase brightness', group = 'hotkeys'}
+		{description = 'decrease brightness', group = 'hotkeys'}
 	),
 	awful.key(
 		{},
@@ -264,7 +279,7 @@ local global_keys = awful.util.table.join(
 			awesome.emit_signal('widget::brightness')
 			awesome.emit_signal('module::brightness_osd:show', true)
 		end,
-		{description = 'decrease/increase brightness', group = 'hotkeys'}
+		{description = 'increase brightness', group = 'hotkeys'}
 	),
 
 	-- Audio control
@@ -324,13 +339,14 @@ local global_keys = awful.util.table.join(
 
 	),
 
+	-- Other hokeys
 	awful.key(
 		{},
 		'XF86PowerDown',
 		function()
 			awesome.emit_signal('module::exit_screen:show')
 		end,
-		{description = 'shutdown skynet', group = 'hotkeys'}
+		{description = 'toggle exit screen', group = 'hotkeys'}
 	),
 	awful.key(
 		{},
@@ -347,23 +363,6 @@ local global_keys = awful.util.table.join(
 			awful.spawn.single_instance('arandr', false)
 		end,
 		{description = 'arandr', group = 'hotkeys'}
-	),
-
-
-	awful.key(
-		{ 'Control' },
-		'Escape',
-		function ()
-			if screen.primary.systray then
-				if not screen.primary.tray_toggler then
-					local systray = screen.primary.systray
-					systray.visible = not systray.visible
-				else
-					awesome.emit_signal('widget::systray:toggle')
-				end
-			end
-		end,
-		{description = 'toggle systray visibility', group = 'Utility'}
 	)
 )
 
@@ -372,12 +371,13 @@ local global_keys = awful.util.table.join(
 -- This should map on the top row of your keyboard, usually 1 to 9.
 for i = 1, 6 do
 	-- Hack to only show tags 1 and 6 in the shortcut window (mod+s)
-	local descr_view, descr_move, descr_toggle_focus
-	if i == 1 or i == 6 then
-		descr_view = {description = 'view tag #', group = 'tag'}
-		descr_move = {description = 'move focused client to tag #', group = 'tag'}
-		descr_toggle_focus = {description = 'toggle focused client on tag #', group = 'tag'}
-	end
+	-- Currently hides all descriptions in tags, don't know why
+	-- local descr_view, descr_move, descr_toggle_focus
+	-- if i == 1 or i == 6 then
+	-- 	descr_view = { description = 'view tag #', group = 'tag' }
+	-- 	descr_move = { description = 'move focused client to tag #', group = 'tag' }
+	-- 	descr_toggle_focus = { description = 'toggle focused client on tag #', group = 'tag' }
+	-- end
 	global_keys =
 		awful.util.table.join(
 		global_keys,
@@ -392,7 +392,7 @@ for i = 1, 6 do
 					tag:view_only()
 				end
 			end,
-			descr_view
+			{}
 		),
 		-- Move client to tag.
 		awful.key(
@@ -406,7 +406,7 @@ for i = 1, 6 do
 					end
 				end
 			end,
-			descr_move
+			{}
 		),
 		-- Toggle tag on focused client.
 		awful.key(
@@ -420,7 +420,7 @@ for i = 1, 6 do
 					end
 				end
 			end,
-			descr_toggle_focus
+			{}
 		)
 	)
 end
