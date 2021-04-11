@@ -23,15 +23,15 @@ return awful.util.table.join(
 	awful.button(
 		{modkey},
 		4,
-		function()
-			awful.layout.inc(1)
+		function(t)
+			awful.tag.viewprev(t.screen)
 		end
 	),
 	awful.button(
 		{modkey},
 		5,
-		function()
-			awful.layout.inc(-1)
+		function(t)
+			awful.tag.viewnext(t.screen)
 		end
 	)
 )

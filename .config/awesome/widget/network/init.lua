@@ -82,7 +82,6 @@ local return_button = function()
 
 	local check_internet_health = [=[
 	status_ping=0
-
 	packets="$(ping -q -w2 -c2 1.1.1.1 | grep -o "100% packet loss")"
 	if [ ! -z "${packets}" ];
 	then
@@ -90,7 +89,6 @@ local return_button = function()
 	else
 		status_ping=1
 	fi
-
 	if [ $status_ping -eq 0 ];
 	then
 		echo 'Connected but no internet'
@@ -288,47 +286,41 @@ local return_button = function()
 			wireless="]=] .. tostring(interfaces.wlan_interface) .. [=["
 			wired="]=] .. tostring(interfaces.lan_interface) .. [=["
 			net="/sys/class/net/"
-
 			wired_state="down"
 			wireless_state="down"
 			network_mode=""
-
 			# Check network state based on interface's operstate value
-			function check_network_state() {
+			check_network_state() {
 				# Check what interface is up
-				if [[ "${wireless_state}" == "up" ]];
+				if [ "${wireless_state}" = "up" ];
 				then
 					network_mode='wireless'
-				elif [[ "${wired_state}" == "up" ]];
+				elif [ "${wired_state}" = "up" ];
 				then
 					network_mode='wired'
 				else
 					network_mode='No internet connection'
 				fi
 			}
-
 			# Check if network directory exist
-			function check_network_directory() {
-				if [[ -n "${wireless}" && -d "${net}${wireless}" ]];
+			check_network_directory() {
+				if [ -n "${wireless}" ] && [ -d "${net}${wireless}" ];
 				then
 					wireless_state="$(cat "${net}${wireless}/operstate")"
 				fi
-				if [[ -n "${wired}" && -d "${net}${wired}" ]]; then
+				if [ -n "${wired}" ] && [ -d "${net}${wired}" ]; then
 					wired_state="$(cat "${net}${wired}/operstate")"
 				fi
 				check_network_state
 			}
-
 			# Start script
-			function print_network_mode() {
+			print_network_mode() {
 				# Call to check network dir
 				check_network_directory
 				# Print network mode
 				printf "${network_mode}"
 			}
-
 			print_network_mode
-
 			]=],
 			function(stdout)
 				local mode = stdout:gsub('%\n', '')

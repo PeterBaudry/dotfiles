@@ -33,7 +33,7 @@ return {
 		-- Default power manager
 		power_manager = 'xfce4-power-manager-settings',
 		-- Default GUI package manager
-		package_manager = 'alacritty -e paru',
+		package_manager = 'alacritty -e yay -Syu',
 		-- Default locker
 		lock = 'light-locker-command -l',
 		-- Default app menu
@@ -53,13 +53,13 @@ return {
 		'/usr/bin/lxqt-policykit-agent &'..
 		' eval $(gnome-keyring-daemon -s --components=pkcs11,secrets,ssh,gpg)',
 		-- Start power manager
-		'xfce4-poser-manager',
+		'xfce4-power-manager',
 		-- Load X colors
 		'xrdb $HOME/.Xresources',
 		-- Audio equalizer
 		'pulseeffects --gapplication-service',
 		-- Start locker service
-		'light-locker --lock-on-suspend --lock-on-lid',
+		'light-locker --lock-on-lid',
 		-- Start libinput-gestures
 		'libinput-gestures-setup start',
 		-- Start Solaar for keyboard & mouse management
